@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="toolbar_line_color">#FFC7C7C7</color>
+    <color name="toolbar_title_text_color">#FF2F2F2F</color>
+    <color name="main_default_border">#FFFD7E01</color>
+    <color name="main_pressed_border">#FFFC820A</color>
+    <color name="main_disable_border">#FFF8B779</color>
+    <color name="main_default_bg">#FFFD952F</color>
+    <color name="main_pressed_bg">#FFFD8815</color>
+    <color name="main_disable_bg">#FFF8C38F</color>
+    <color name="text_default_color">#FFFDFDFE</color>
+    <color name="text_pressed_color">#FFFDDFCC</color>
+    <color name="text_disable_color">#FFF8F8F8</color>
+    <color name="white_default_border">#FFDEDEDE</color>
+    <color name="white_pressed_border">#FFC6C6C6</color>
+    <color name="white_default_bg">#FFF7F7F7</color>
+    <color name="white_pressed_bg">#FFDADADA</color>
+    <color name="secondary_text_default_color">#FF353535</color>
+    <color name="secondary_text_pressed_color">#FF757575</color>
+    <color name="danger_default_border">#FFD13A39</color>
+    <color name="danger_default_bg">#FFE44340</color>
+    <color name="danger_pressed_border">#FFBB3532</color>
+    <color name="danger_pressed_bg">#FFCC3C37</color>
+    <color name="danger_disable_border">#FFE19594</color>
+    <color name="danger_disable_bg">#FFEA9998</color>
+
+    <!--option itemLayout-->
+    <!-- 白色 -->
+    <color name="white">#FFF</color>
+    <color name="common_pressed">#d9d9d9</color>  <!--白色背景按下去的颜色-->
+    <color name="line">#e8e8e8</color>
+</resources>
