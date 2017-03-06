@@ -54,7 +54,7 @@ public abstract class JFragment extends Fragment {
         loadingLayout = (LoadingLayout) root.findViewById(R.id.uikit_loading_layout);
         contentStub = (ViewStub) root.findViewById(R.id.uikit_base_content);
         setHasOptionsMenu(HasOptionsMenu());
-        if (getLayoutId() == 0) {
+        if (getLayoutId() != 0) {
             contentStub.setLayoutResource(getLayoutId());
             contentStub.setVisibility(View.VISIBLE);
         }

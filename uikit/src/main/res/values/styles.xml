@@ -51,11 +51,11 @@
     </style>
     <style name="imageWithBadge">
         <item name="android:layout_marginTop">3dp</item>
-        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginRight">1dp</item>
     </style>
     <style name="optionBadge">
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginRight">28dp</item>
+        <item name="android:layout_marginRight">14dp</item>
 
     </style>
 </resources>

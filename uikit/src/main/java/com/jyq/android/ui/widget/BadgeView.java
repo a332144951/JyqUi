@@ -149,11 +149,12 @@ public class BadgeView extends AppCompatTextView {
         fadeOut.setDuration(200);
 
         isShown = false;
-
-        if (this.target != null) {
-            applyTo(this.target);
-        } else {
-            show();
+        if (getVisibility()==VISIBLE) {
+            if (this.target != null) {
+                applyTo(this.target);
+            } else {
+                show();
+            }
         }
 
     }
