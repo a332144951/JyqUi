@@ -45,5 +45,17 @@
         <item name="sLeftTextMarginLeft">20dp</item>
         <item name="sLeftTextSize">15sp</item>
         <item name="sLeftTextColor">#fff</item>
+        <item name="sRightTextMarginRight">8dp</item>
+        <item name="sRightIconWidth">32dp</item>
+        <item name="sRightIconHeight">32dp</item>
+    </style>
+    <style name="imageWithBadge">
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+    </style>
+    <style name="optionBadge">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">28dp</item>
+
     </style>
 </resources>

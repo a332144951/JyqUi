@@ -34,7 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 
-import com.jyq.android.common.R;
+import com.jyq.android.ui.R;
 import com.jyq.android.ui.ToastUtils;
 import com.jyq.android.ui.widget.LoadingLayout;
 import com.jyq.android.ui.widget.dialog.DialogMaker;

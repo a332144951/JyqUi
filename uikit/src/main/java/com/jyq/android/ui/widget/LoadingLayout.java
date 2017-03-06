@@ -45,7 +45,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jyq.android.common.R;
+
+import com.jyq.android.ui.R;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -18,11 +18,15 @@
 
     <com.jyq.android.ui.widget.OptionItemView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:sLeftTextString="ddd"
-        app:sLeftIconMarginLeft="0dp"
-        app:sLeftTextMarginLeft="100dp"
-        app:sLeftIconRes="@drawable/ic_navigation">
+        android:layout_height="186dp"
+        app:sBothLineWidth="10dp"
+        app:sBottomLineWidth="5dp"
+        app:sLeftIconRes="@drawable/error"
+        app:sLeftTextString="dddd"
+        app:sRightIconHeight="64dp"
+        app:sRightTextString="sss"
+        app:sRightTextStringRightIconRes="@drawable/ic_navigation"
+        app:sTopLineWidth="10dp">
 
     </com.jyq.android.ui.widget.OptionItemView>
 </LinearLayout>

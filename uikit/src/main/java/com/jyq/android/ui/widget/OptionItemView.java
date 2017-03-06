@@ -26,6 +26,7 @@ package com.jyq.android.ui.widget;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
@@ -37,6 +38,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.jyq.android.ui.R;
 
@@ -168,17 +170,40 @@ public class OptionItemView extends RelativeLayout {
     private void getAttr(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         TypedArray typedArray=mContext.obtainStyledAttributes(attrs,R.styleable.OptionItemView,defStyleAttr,defStyleRes);
 
-        ////////设置文字或者图片资源////////
+        //////设置字体大小////////
+        leftTVSize = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftTextSize, defaultSize);
+
+        rightTVSize = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightTextSize, defaultSize);
+
+        ///////设置textView的属性///////////SuperTextViewxEms
+        isSingLines = typedArray.getBoolean(R.styleable.OptionItemView_sIsSingLines, isSingLines);
+        maxLines = typedArray.getInt(R.styleable.OptionItemView_sMaxLines, maxLines);
+        maxEms = typedArray.getInt(R.styleable.OptionItemView_sMaxEms, maxEms);
+        rightTVMarginRight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightTextMarginRight, defaultPadding);
+        rightIconMarginRight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightIconMarginRight, defaultPadding);
+        //////设置字体颜色////////
+        leftTVColor = typedArray.getColor(R.styleable.OptionItemView_sLeftTextColor, defaultColor);
+        rightTVColor = typedArray.getColor(R.styleable.OptionItemView_sRightTextColor, defaultColor);
+
+
+
+        leftIconWidth = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftIconWidth, 0);
+        leftIconHeight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftIconHeight, 0);
+
+        rightIconWidth = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightIconWidth, 0);
+        rightIconHeight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightIconHeight, 0);
+
+        leftIconMarginLeft = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftIconMarginLeft, defaultPadding);
+        leftTVMarginLeft = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftTextMarginLeft, defaultPadding);
+
         leftIconRes = typedArray.getDrawable(R.styleable.OptionItemView_sLeftIconRes);
         rightIconRes = typedArray.getDrawable(R.styleable.OptionItemView_sRightIconRes);
-
         leftTextString = typedArray.getString(R.styleable.OptionItemView_sLeftTextString);
         rightTextString = typedArray.getString(R.styleable.OptionItemView_sRightTextString);
-
         rightTextStringRightIconRes = typedArray.getDrawable(R.styleable.OptionItemView_sRightTextStringRightIconRes);
+        ////////设置文字或者图片资源////////
+
         rightTextStringRightIconPadding = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightTextStringRightIconResPadding, dip2px(mContext, 5));
-
-
 
         lineType = typedArray.getInt(R.styleable.OptionItemView_sLineShow, DEFAULT);
 
@@ -194,36 +219,18 @@ public class OptionItemView extends RelativeLayout {
         topLineMargin = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sTopLineMargin, defaultLinePadding);
         bottomLineMargin = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sBottomLineMargin, defaultLinePadding);
         bothLineMargin = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sBothLineMargin, defaultLinePadding);
-
-        leftIconMarginLeft = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftIconMarginLeft, defaultPadding);
-        leftTVMarginLeft = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftTextMarginLeft, defaultPadding);
-
-        rightTVMarginRight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightTextMarginRight, defaultPadding);
-        rightIconMarginRight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightIconMarginRight, defaultPadding);
-        //////设置字体颜色////////
-        leftTVColor = typedArray.getColor(R.styleable.OptionItemView_sLeftTextColor, defaultColor);
-        rightTVColor = typedArray.getColor(R.styleable.OptionItemView_sRightTextColor, defaultColor);
-        //////设置字体大小////////
-        leftTVSize = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftTextSize, defaultSize);
-        rightTVSize = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightTextSize, defaultSize);
-
-        ///////设置textView的属性///////////SuperTextViewxEms
-        isSingLines = typedArray.getBoolean(R.styleable.OptionItemView_sIsSingLines, isSingLines);
-        maxLines = typedArray.getInt(R.styleable.OptionItemView_sMaxLines, maxLines);
-        maxEms = typedArray.getInt(R.styleable.OptionItemView_sMaxEms, maxEms);
-
-        leftIconWidth = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftIconWidth, 0);
-        leftIconHeight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sLeftIconHeight, 0);
-
-        rightIconWidth = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightIconWidth, 0);
-        rightIconHeight = typedArray.getDimensionPixelSize(R.styleable.OptionItemView_sRightIconHeight, 0);
-
         showLeftBadge=typedArray.getBoolean(R.styleable.OptionItemView_sLeftBadgeShow,false);
         showRightBadge=typedArray.getBoolean(R.styleable.OptionItemView_sRightBadgeShow,false);
+//        setShowLeftBadge(showRightBadge);
         rightIconWithBadge=typedArray.getBoolean(R.styleable.OptionItemView_sRightIconWithBadge,false);
+
+
         typedArray.recycle();
     }
+    public void setLeftTextString(CharSequence text){
+        initLeftText();
 
+    }
     /**
      * 初始化布局
      */
@@ -263,10 +270,31 @@ public class OptionItemView extends RelativeLayout {
                 initLeftBadge();
         }
     }
+
+    public void setShowLeftBadge(boolean showLeftBadge) {
+        initRightBadge();
+//        rightBadge.bindTarget(this);
+//        rightBadge.setBadgeGravity(Gravity.CENTER|Gravity.END);
+//        rightBadge.setBadgeNumber(0);
+    }
+
+    private void initRightBadge(){
+        if (rightBadge==null){
+            rightBadge=new BadgeView(getContext());
+        }
+    }
     private void initLeftBadge(){
-            if (leftBadge==null){
-                leftBadge=new BadgeView(getContext());
-            }
+//            if (leftBadge==null){
+//                leftBadge=new BadgeView(getContext());
+//                leftBadge.bindTarget(leftTV);
+//                leftBadge.setBadgeGravity(Gravity.CENTER|Gravity.END);
+//                leftBadge.setBadgePadding(1,true);
+//                leftBadge.setGravityOffset(18,0,true);
+//                leftBadge.setBadgeTextColor(Color.WHITE);
+//                leftBadge.setBadgeTextSize(10,true);
+//            }
+//            leftBadge.setBadgeNumber(0);
+
     }
 
     /**
@@ -327,7 +355,7 @@ public class OptionItemView extends RelativeLayout {
         View view = new View(mContext);
         centerBaseLineParams = new LayoutParams(LayoutParams.MATCH_PARENT, centerSpaceHeight);
         centerBaseLineParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
-        view.setId(R.id.sCenterBaseLineId);
+//        view.setId(R.id.sCenterBaseLineId);
         view.setLayoutParams(centerBaseLineParams);
         addView(view);
     }
@@ -347,7 +375,7 @@ public class OptionItemView extends RelativeLayout {
         }
         setMargin(leftImgParams, leftIconMarginLeft, 0, 0, 0);
         leftIconIV.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        leftIconIV.setId(R.id.sLeftIconId);
+//        leftIconIV.setId(R.id.sLeftIconId);
         leftIconIV.setLayoutParams(leftImgParams);
         if (leftIconRes != null) {
             leftIconIV.setImageDrawable(leftIconRes);
@@ -359,20 +387,20 @@ public class OptionItemView extends RelativeLayout {
      * 初始化左边文字
      */
     private void initLeftText() {
-        leftTV = new TextView(mContext);
-        leftTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        leftTextParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
-        leftTextParams.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftIconId);
-        setMargin(leftTextParams, leftTVMarginLeft, 0, dip2px(mContext, 10), 0);
-        leftTV.setId(R.id.sLeftTextId);
-        leftTV.setLayoutParams(leftTextParams);
-        leftTV.setText(leftTextString);
-
-        setTextViewParams(leftTV, isSingLines, maxLines, maxEms);
-
-        setTextColor(leftTV, leftTVColor);
-        setTextSize(leftTV, leftTVSize);
-        addView(leftTV);
+        if (leftTV==null) {
+            leftTV = new TextView(mContext);
+            leftTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            leftTextParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
+//            leftTextParams.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftIconId);
+            setMargin(leftTextParams, leftTVMarginLeft, 0, dip2px(mContext, 10), 0);
+//            leftTV.setId(R.id.sLeftTextId);
+            leftTV.setLayoutParams(leftTextParams);
+            leftTV.setText(leftTextString);
+            setTextViewParams(leftTV, isSingLines, maxLines, maxEms);
+            setTextColor(leftTV, leftTVColor);
+            setTextSize(leftTV, leftTVSize);
+            addView(leftTV);
+        }
     }
 
     /**
@@ -399,10 +427,10 @@ public class OptionItemView extends RelativeLayout {
         rightTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         rightTextParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
         rightTextParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
-        rightTextParams.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftTextId);
-        rightTextParams.addRule(RelativeLayout.LEFT_OF, R.id.sRightIconId);
+//        rightTextParams.addRule(RelativeLayout.RIGHT_OF, R.id.sLeftTextId);
+//        rightTextParams.addRule(RelativeLayout.LEFT_OF, R.id.sRightIconId);
         setMargin(rightTextParams, 0, 0, rightTVMarginRight, 0);
-        rightTV.setId(R.id.sRightTextId);
+//        rightTV.setId(R.id.sRightTextId);
         rightTV.setLayoutParams(rightTextParams);
         rightTV.setText(rightTextString);
         setTextColor(rightTV, rightTVColor);
@@ -427,7 +455,7 @@ public class OptionItemView extends RelativeLayout {
         }
         setMargin(rightImgParams, 0, 0, rightIconMarginRight, 0);
         rightIconIV.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        rightIconIV.setId(R.id.sRightIconId);
+//        rightIconIV.setId(R.id.sRightIconId);
         rightIconIV.setLayoutParams(rightImgParams);
         if (rightIconRes != null) {
             rightIconIV.setImageDrawable(rightIconRes);
@@ -639,25 +667,25 @@ public class OptionItemView extends RelativeLayout {
                 if (leftTV == null) {
                     initLeftText();
                 }
-                viewId = R.id.sLeftTextId;
+//                viewId = R.id.sLeftTextId;
                 break;
             case rightTextViewId:
                 if (rightTV == null) {
                     initRightText();
                 }
-                viewId = R.id.sRightTextId;
+//                viewId = R.id.sRightTextId;
                 break;
             case leftImageViewId:
                 if (leftIconIV == null) {
                     initLeftIcon();
                 }
-                viewId = R.id.sLeftIconId;
+//                viewId = R.id.sLeftIconId;
                 break;
             case rightImageViewId:
                 if (rightIconIV == null) {
                     initRightIcon();
                 }
-                viewId = R.id.sRightIconId;
+//                viewId = R.id.sRightIconId;
                 break;
         }
         return viewId;

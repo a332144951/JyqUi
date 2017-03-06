@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_centerVertical="true"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+
+
+    tools:background="#542128">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/widget_option_item_icon"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        app:srcCompat="@drawable/error" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/widget_option_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/widget_option_item_icon"
+        android:text="ddddddd"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <com.jyq.android.ui.widget.BadgeView
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@id/widget_option_item_title"
+        android:gravity="center"
+        android:minWidth="19dp"
+        android:padding="1dp"
+        android:text="9"
+        android:textColor="#fff"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/widget_option_item_image"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:background="#125476"
+        android:visibility="visible"
+        app:srcCompat="@drawable/empty" />
+
+    <com.jyq.android.ui.widget.BadgeView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        style="@style/optionBadge"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>
