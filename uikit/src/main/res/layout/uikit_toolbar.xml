@@ -11,8 +11,7 @@
     android:layout_height="@dimen/toolbar_height"
     app:elevation="1dp"
     app:navigationIcon="@drawable/ic_navigation"
-    app:theme="@style/AppTheme"
-    app:title="xxxxx" />
+    app:theme="@style/AppTheme" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -44,6 +44,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 
 import com.jyq.android.ui.R;
@@ -125,7 +126,6 @@ public class LoadingLayout extends FrameLayout {
     int mContentId = NO_ID;
 
     Map<Integer, View> mLayouts = new HashMap<>();
-
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mInflater = LayoutInflater.from(context);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LoadingLayout, defStyleAttr, R.style.LoadingLayout_Style);

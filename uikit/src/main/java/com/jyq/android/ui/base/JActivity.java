@@ -59,7 +59,7 @@ public class JActivity extends AppCompatActivity {
         contentStub = findView(R.id.uikit_base_content);
         initToolbar();
         initLoadingLayout();
-        showLoadingPage();
+
     }
 
     private void initToolbar() {
@@ -78,7 +78,8 @@ public class JActivity extends AppCompatActivity {
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         contentStub.setLayoutResource(layoutResID);
-        contentStub.setVisibility(View.VISIBLE);
+        contentStub.inflate();
+        showLoadingPage();
     }
 
     private void initLoadingLayout() {
