@@ -5,59 +5,15 @@
         <attr name="sLeftIconRes" format="reference" />
         <attr name="sRightIconRes" format="reference" />
 
-        <attr name="sLeftIconWidth" format="dimension" />
-        <attr name="sLeftIconHeight" format="dimension" />
-
-        <attr name="sRightIconWidth" format="dimension" />
-        <attr name="sRightIconHeight" format="dimension" />
-
-
         <attr name="sLeftTextString" format="string" />
         <attr name="sRightTextString" format="string" />
 
-
-
-        <attr name="sTopLineMargin" format="dimension" />
-        <attr name="sBottomLineMargin" format="dimension" />
-        <attr name="sBothLineMargin" format="dimension" />
-
-        <attr name="sCenterSpaceHeight" format="dimension" />
-
-        <attr name="sLeftIconMarginLeft" format="dimension" />
-        <attr name="sLeftTextMarginLeft" format="dimension" />
-
-
-        <attr name="sRightTextStringRightIconRes" format="reference" />
-        <attr name="sRightTextStringRightIconResPadding" format="dimension" />
-
-        <attr name="sRightIconMarginRight" format="dimension" />
-        <attr name="sRightTextMarginRight" format="dimension" />
-
-        <attr name="sLeftTextSize" format="dimension" />
-        <attr name="sRightTextSize" format="dimension" />
-
-
-        <attr name="sLeftTextColor" format="color" />
-        <attr name="sRightTextColor" format="color" />
-
-        <attr name="sIsSingLines" format="boolean" />
-        <attr name="sMaxLines" format="integer" />
-        <attr name="sMaxEms" format="integer" />
-
-        <attr name="sLineShow" format="enum">
-            <enum name="none" value="0" />
-            <enum name="top" value="1" />
-            <enum name="bottom" value="2" />
-            <enum name="both" value="3" />
-        </attr>
-
-        <attr name="sBothLineWidth" format="dimension" />
-        <attr name="sTopLineWidth" format="dimension" />
-        <attr name="sBottomLineWidth" format="dimension" />
-        <attr name="sLineColor" format="color" />
-
-        <attr name="sLeftBadgeShow" format="boolean"/>
-        <attr name="sRightBadgeShow" format="boolean"/>
-        <attr name="sRightIconWithBadge" format="boolean"/>
+        <attr name="sCenterIconRes" format="reference"/>
+        <attr name="sShowImageBadge" format="boolean"/>
+        <attr name="sNumberBadge" format="integer"/>
+        <attr name="sShowCircleBadge" format="boolean"/>
+        <attr name="sRightSmallTextString" format="string"/>
+        <attr name="sRightTextColor" format="color"/>
+        <attr name="sShowBottomLine" format="boolean"/>
     </declare-styleable>
 </resources>

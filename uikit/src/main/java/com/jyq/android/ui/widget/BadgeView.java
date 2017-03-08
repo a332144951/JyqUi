@@ -297,7 +297,7 @@ public class BadgeView extends AppCompatTextView {
             }
             setBackgroundDrawable(badgeBg);
         }
-        applyLayoutParams();
+//        applyLayoutParams();
 
         if (animate) {
             this.startAnimation(anim);
