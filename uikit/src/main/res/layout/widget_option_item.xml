@@ -6,6 +6,7 @@
     android:clipChildren="false"
     android:clipToPadding="false"
     android:paddingLeft="13dp"
+    android:background="#FFFDFDFE"
     android:paddingRight="13dp">
 
     <android.support.v7.widget.AppCompatImageView
@@ -113,5 +114,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:background="#FFD7D7D7" />
 </RelativeLayout>

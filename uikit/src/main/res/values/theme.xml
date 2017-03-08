@@ -8,6 +8,7 @@
         <item name="toolbarNavigationButtonStyle">@style/AppTheme.NavigationStyle</item>
         <item name="styleLoadingLayout">@style/LoadingLayoutStyle</item>
         <item name="OptionItemViewStyle">@style/optionItemStyle</item>
+        <item name="AvatarItemViewStyle">@style/avatarItemStyle</item>
         <!--<item name="android:buttonStyle">@style/AppTheme.buttonStyle</item>-->
         <!--<item name="android:buttonStyleSmall">@style/AppTheme.buttonStyleSmall</item>-->
     </style>

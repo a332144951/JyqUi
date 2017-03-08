@@ -16,4 +16,5 @@
     <dimen name="button_text_size" >15sp</dimen>
     <dimen name="option_item_height">48dp</dimen>
     <dimen name="optionitem_leftimage_width">24dp</dimen>
+    <dimen name="avatar_item_height">80dp</dimen>
 </resources>

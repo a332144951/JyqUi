@@ -38,16 +38,9 @@
     <style name="optionItemStyle" >
         <item name="android:layout_height">@dimen/option_item_height</item>
         <item name="android:background">@drawable/selector_white</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
     </style>
-    <style name="imageWithBadge">
-        <item name="android:layout_marginTop">3dp</item>
-        <item name="android:layout_marginRight">1dp</item>
-    </style>
-    <style name="optionBadge">
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginRight">14dp</item>
-
+    <style name="avatarItemStyle" >
+        <item name="android:layout_height">@dimen/avatar_item_height</item>
+        <item name="android:background">@drawable/selector_white</item>
     </style>
 </resources>

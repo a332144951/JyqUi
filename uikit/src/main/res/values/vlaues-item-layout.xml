@@ -2,18 +2,18 @@
 <resources>
     <attr name="OptionItemViewStyle" format="reference"/>
     <declare-styleable name="OptionItemView">
-        <attr name="sLeftIconRes" format="reference" />
-        <attr name="sRightIconRes" format="reference" />
+        <attr name="oLeftIconRes" format="reference" />
+        <attr name="oRightIconRes" format="reference" />
 
-        <attr name="sLeftTextString" format="string" />
-        <attr name="sRightTextString" format="string" />
+        <attr name="oLeftTextString" format="string" />
+        <attr name="oRightTextString" format="string" />
 
-        <attr name="sCenterIconRes" format="reference"/>
-        <attr name="sShowImageBadge" format="boolean"/>
-        <attr name="sNumberBadge" format="integer"/>
-        <attr name="sShowCircleBadge" format="boolean"/>
-        <attr name="sRightSmallTextString" format="string"/>
-        <attr name="sRightTextColor" format="color"/>
-        <attr name="sShowBottomLine" format="boolean"/>
+        <attr name="oCenterIconRes" format="reference"/>
+        <attr name="oShowImageBadge" format="boolean"/>
+        <attr name="oNumberBadge" format="integer"/>
+        <attr name="oShowCircleBadge" format="boolean"/>
+        <attr name="oRightSmallTextString" format="string"/>
+        <attr name="oRightTextColor" format="color"/>
+        <attr name="oShowBottomLine" format="boolean"/>
     </declare-styleable>
 </resources>

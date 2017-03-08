@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingLeft="13dp"
+    android:background="#FFFDFDFE"
+    android:paddingRight="13dp">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/widget_avatar_item_left_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16.3dp"
+
+        app:srcCompat="@drawable/error" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/widget_avatar_item_left_icon"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/widget_avatar_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ddddddd"
+            android:textColor="#FF2F2F2F"
+            android:textSize="15sp"
+            android:visibility="gone" />
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/widget_avatar_item_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ddddddd"
+            android:layout_marginTop="10dp"
+            android:textColor="#FF9C9C9C"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/widget_avatar_item_right_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/error" />
+
+    <View
+        android:id="@+id/widget_avatar_item_bottomLine"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFD7D7D7" />
+</RelativeLayout>

@@ -73,7 +73,7 @@ public class OptionItemView extends RelativeLayout {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public OptionItemView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-
+        initLayout();
         this.getAttr(context, attrs, defStyleAttr,defStyleRes);
     }
 
@@ -84,17 +84,17 @@ public class OptionItemView extends RelativeLayout {
      */
     private void getAttr(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         TypedArray typedArray=context.obtainStyledAttributes(attrs,R.styleable.OptionItemView,defStyleAttr,defStyleRes);
-        setLeftIconImage(typedArray.getDrawable(R.styleable.OptionItemView_sLeftIconRes));
-        setCenterIconImage(typedArray.getDrawable(R.styleable.OptionItemView_sCenterIconRes));
-        showBottomLine(typedArray.getBoolean(R.styleable.OptionItemView_sShowBottomLine,false));
-        final boolean showImageBadge=typedArray.getBoolean(R.styleable.OptionItemView_sShowImageBadge,false);
-        setRightIconImage(typedArray.getDrawable(R.styleable.OptionItemView_sRightIconRes),showImageBadge);
-        setNumberBadge(typedArray.getInt(R.styleable.OptionItemView_sNumberBadge,0));
-        showCircleBadge(typedArray.getBoolean(R.styleable.OptionItemView_sShowCircleBadge,false));
-        setLeftTitleText(typedArray.getText(R.styleable.OptionItemView_sLeftTextString));
-        setRightDescriptionText(typedArray.getText(R.styleable.OptionItemView_sRightTextString));
-        setRightSmallDescriptionText(typedArray.getText(R.styleable.OptionItemView_sRightSmallTextString));
-        setRightDescriptionTextColor(typedArray.getColor(R.styleable.OptionItemView_sRightTextColor, getResources().getColor(R.color.main_default_bg)));
+        setLeftIconImage(typedArray.getDrawable(R.styleable.OptionItemView_oLeftIconRes));
+        setCenterIconImage(typedArray.getDrawable(R.styleable.OptionItemView_oCenterIconRes));
+        showBottomLine(typedArray.getBoolean(R.styleable.OptionItemView_oShowBottomLine,false));
+        final boolean showImageBadge=typedArray.getBoolean(R.styleable.OptionItemView_oShowImageBadge,false);
+        setRightIconImage(typedArray.getDrawable(R.styleable.OptionItemView_oRightIconRes),showImageBadge);
+        setNumberBadge(typedArray.getInt(R.styleable.OptionItemView_oNumberBadge,0));
+        showCircleBadge(typedArray.getBoolean(R.styleable.OptionItemView_oShowCircleBadge,false));
+        setLeftTitleText(typedArray.getText(R.styleable.OptionItemView_oLeftTextString));
+        setRightDescriptionText(typedArray.getText(R.styleable.OptionItemView_oRightTextString));
+        setRightSmallDescriptionText(typedArray.getText(R.styleable.OptionItemView_oRightSmallTextString));
+        setRightDescriptionTextColor(typedArray.getColor(R.styleable.OptionItemView_oRightTextColor, getResources().getColor(R.color.main_default_bg)));
         typedArray.recycle();
     }
     /**
