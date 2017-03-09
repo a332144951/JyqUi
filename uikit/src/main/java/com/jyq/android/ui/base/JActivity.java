@@ -79,7 +79,7 @@ public class JActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResID) {
         contentStub.setLayoutResource(layoutResID);
         contentStub.inflate();
-        showLoadingPage();
+//        showLoadingPage();
     }
 
     private void initLoadingLayout() {

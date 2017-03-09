@@ -41,7 +41,7 @@ public abstract class JPresenter<V extends JMvpView> {
         this.mvpViewRef=new WeakReference<V>(mvpView);
     }
     public V  getMvpView(){
-        return (V) this.mvpViewRef.get();
+        return this.mvpViewRef.get();
     }
 
     public void deatchView(){

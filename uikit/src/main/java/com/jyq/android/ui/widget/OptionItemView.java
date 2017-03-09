@@ -26,7 +26,6 @@ package com.jyq.android.ui.widget;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
