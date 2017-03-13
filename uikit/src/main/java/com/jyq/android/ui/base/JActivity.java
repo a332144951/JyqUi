@@ -32,6 +32,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 
 import com.jyq.android.ui.R;
@@ -75,11 +76,18 @@ public class JActivity extends AppCompatActivity {
         return this;
     }
 
+
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        super.setContentView(view, params);
+    }
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         contentStub.setLayoutResource(layoutResID);
         contentStub.inflate();
-//        showLoadingPage();
+        showLoadingPage();
     }
 
     private void initLoadingLayout() {
