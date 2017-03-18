@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="76dp"
+    android:clipChildren="false"
+    android:background="#451287"
+    android:gravity="center">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/refresh_heaer_bg" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/car_header_bg"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-135dp"
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:scaleType="center"
+        app:srcCompat="@drawable/car_header_bg" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/car_header_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/car_header_bg"
+        app:srcCompat="@drawable/car_header_car" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/car_header_frontwheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/car_header_car"
+        android:layout_below="@id/car_header_car"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="-11dp"
+        app:srcCompat="@drawable/car_header_wheel" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/car_header_backwheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/car_header_car"
+        android:layout_below="@id/car_header_car"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="-11dp"
+        app:srcCompat="@drawable/car_header_wheel" />
+</RelativeLayout>

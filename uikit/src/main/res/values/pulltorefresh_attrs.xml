@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PullToRefreshLayout">
+        <attr name="refreshView">
+            <enum name="circleProgress" value="0"/>
+            <enum name="car" value="1"/>
+        </attr>
+        <attr name="refreshEnable" format="boolean"/>
+        <attr name="loadmoreEnable" format="boolean"/>
+    </declare-styleable>
+
+</resources>
