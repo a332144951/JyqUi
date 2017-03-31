@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,8 @@ import android.webkit.WebViewClient;
 import android.webkit.WebViewFragment;
 
 import com.jyq.android.common.preferences.AppPreference;
+import com.jyq.android.net.HttpKit;
+import com.jyq.android.net.cache.HttpCache;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,7 +75,8 @@ public class JWebViewFragment extends WebViewFragment {
     }
     private Map<String,String> getHeader(){
         Map<String,String> header=new HashMap<>();
-        header.put("Authorization","Bearer "+ AppPreference.getApiToken());
+        Pair<String,String> headers=HttpKit.getInstance().getAuthenticator();
+        header.put(headers.first,headers.second);
         return header;
     }
     private WebChromeClient chromeClient=new WebChromeClient(){

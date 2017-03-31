@@ -24,6 +24,8 @@
     <color name="danger_disable_border">#FFE19594</color>
     <color name="danger_disable_bg">#FFEA9998</color>
 
+
+    <color name="menu_dialog_danger_text_color">#e54340</color>
     <!--option itemLayout-->
     <!-- 白色 -->
     <color name="white">#FFF</color>

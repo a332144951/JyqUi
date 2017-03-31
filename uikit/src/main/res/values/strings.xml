@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CommonKit</string>
+    <string name="contact_dialog_clear"><u>清除</u></string>
+    <string name="contact_dialog_result">已选择%d个结果</string>
 </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/contact_dialog_item_user_avatar"
+        android:layout_width="48dp"
+        app:srcCompat="@drawable/default_avatar"
+        android:layout_height="48dp" />
+     <TextView
+
+         tools:text="dddddd"
+         android:id="@+id/contact_dialog_item_user_name"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@id/contact_dialog_item_user_avatar"
+         android:layout_toRightOf="@id/contact_dialog_item_user_avatar"
+         />
+    <TextView
+        android:id="@+id/contact_dialog_item_user_title"
+        tools:text="sssss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/contact_dialog_item_user_avatar"
+        android:layout_alignBottom="@id/contact_dialog_item_user_avatar"
+        />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/contact_dialog_item_user_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="false"
+        android:button="@drawable/checkbox_selector" />
+</RelativeLayout>
