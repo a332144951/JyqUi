@@ -45,19 +45,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
+        android:minHeight="260dp"
+        android:weightSum="1"
         android:orientation="horizontal">
 
         <ExpandableListView
             android:id="@+id/contact_dialog_grade_listview"
             android:layout_width="0dp"
+            android:groupIndicator="@null"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="0.4"/>
 
         <ListView
             android:id="@+id/contact_dialog_user_listview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="0.6"/>
     </LinearLayout>
 
     <LinearLayout

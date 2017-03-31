@@ -5,21 +5,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:descendantFocusability="blocksDescendants"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
+    android:padding="8dp"
     android:orientation="vertical">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/contact_dialog_item_user_avatar"
         android:layout_width="48dp"
         app:srcCompat="@drawable/default_avatar"
+        android:layout_marginRight="8dp"
         android:layout_height="48dp" />
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/contact_dialog_item_user_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:clickable="false"
+        android:button="@drawable/checkbox_selector" />
      <TextView
 
-         tools:text="dddddd"
+         tools:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
          android:id="@+id/contact_dialog_item_user_name"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:layout_toLeftOf="@id/contact_dialog_item_user_checkbox"
          android:layout_alignTop="@id/contact_dialog_item_user_avatar"
          android:layout_toRightOf="@id/contact_dialog_item_user_avatar"
          />
@@ -28,16 +38,11 @@
         tools:text="sssss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_toRightOf="@id/contact_dialog_item_user_avatar"
-        android:layout_alignBottom="@id/contact_dialog_item_user_avatar"
+        android:layout_toLeftOf="@id/contact_dialog_item_user_checkbox"
+        android:layout_below="@id/contact_dialog_item_user_name"
         />
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/contact_dialog_item_user_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:clickable="false"
-        android:button="@drawable/checkbox_selector" />
+
 </RelativeLayout>
