@@ -23,7 +23,7 @@
     <color name="danger_pressed_bg">#FFCC3C37</color>
     <color name="danger_disable_border">#FFE19594</color>
     <color name="danger_disable_bg">#FFEA9998</color>
-
+    <color name="star_view_text_background">#FF9BB701</color>
 
     <color name="menu_dialog_danger_text_color">#e54340</color>
     <!--option itemLayout-->

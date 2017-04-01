@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6F5064"
+
     android:orientation="vertical">
 
     <TextView
@@ -29,6 +30,8 @@
         app:cardUseCompatPadding="false"
         app:cardPreventCornerOverlap="false"
         app:radius="16.6dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:shadowSize="12dp">
 
         <android.support.v7.widget.AppCompatImageView
@@ -45,23 +48,28 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/text_default_color"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="#215487"
+            android:background="@color/star_view_text_background"
             android:gravity="center"
             android:text="eeeeee"
             android:textSize="33.3sp" />
+
         <TextView
             android:id="@+id/uikit_star_tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginRight="8dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/uikit_tip_badge_background_selector"
+            android:bufferType="normal"
+            android:gravity="center"
+            android:layerType="software"
             android:padding="8dp"
             android:rotation="34.2"
             android:text="今日明星"
             android:textColor="#FFF6585C"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:typeface="serif" />
         <ImageView
             android:id="@+id/uikit_star_star"
             android:layout_width="35dp"

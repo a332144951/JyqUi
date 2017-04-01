@@ -24,6 +24,7 @@ package com.jyq.android.ui.starView;
  */
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -35,6 +36,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -85,12 +87,6 @@ public class StartView extends RelativeLayout {
         tipView= (TextView) findViewById(R.id.uikit_star_tip);
         image = (AppCompatImageView) findViewById(R.id.uikit_star_image);
         starView= (ImageView) findViewById(R.id.uikit_star_star);
-        container.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                animatorSet.start();
-            }
-        });
         prepareAnimator();
     }
 
@@ -167,9 +163,10 @@ public class StartView extends RelativeLayout {
     private static final String TAG = "StartView";
 
     private void changeBackend() {
+        tipView.setVisibility(VISIBLE);
         image.setImageDrawable(backendDrawable);
         countDownTextView.setCustomText(countDownText);
-        tipView.setVisibility(VISIBLE);
+        countDownTextView.setBackgroundColor(getResources().getColor(R.color.main_default_bg));
         starView.setVisibility(VISIBLE);
     }
 
@@ -202,6 +199,7 @@ public class StartView extends RelativeLayout {
         ObjectAnimator rotationY0 = ObjectAnimator.ofFloat(container, "rotationY", -90, 0).setDuration(1000);
         animatorSet.playSequentially(rotationY90, rotationY, rotationY0);
         animatorSet.setTarget(container);
+
         animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -209,7 +207,14 @@ public class StartView extends RelativeLayout {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                tipView.bringToFront();
+//                container.clearAnimation();
+//                container.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        tipView.setVisibility(INVISIBLE);
+//                        tipView.setVisibility(VISIBLE);
+//                    }
+//                });
             }
 
             @Override
