@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="#457821"
     android:layout_width="match_parent">
 <android.support.v7.widget.Toolbar
     android:id="@+id/uikit_toolbar"
@@ -10,8 +11,15 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/toolbar_height"
     app:elevation="1dp"
+    android:background="?attr/colorPrimary"
     app:navigationIcon="@drawable/ic_navigation"
-    app:theme="@style/AppTheme" />
+    app:theme="@style/AppTheme" >
+    <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:layout_width="?attr/maxButtonHeight"-->
+        <!--android:gravity="right"-->
+        <!--android:text="sssss"-->
+        <!--android:layout_height="?attr/maxButtonHeight" />-->
+    </android.support.v7.widget.Toolbar>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

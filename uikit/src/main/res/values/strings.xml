@@ -2,4 +2,7 @@
     <string name="app_name">CommonKit</string>
     <string name="contact_dialog_clear"><u>清除</u></string>
     <string name="contact_dialog_result">已选择%d个结果</string>
+    <string name="all_images">全部图片</string>
+    <string name="select_limit">最多选择%1$d张图片</string>
+    <string name="picker_image_btn">完成(%1$d/%2$d)</string>
 </resources>

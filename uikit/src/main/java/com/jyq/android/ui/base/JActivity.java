@@ -70,7 +70,9 @@ public class JActivity extends AppCompatActivity {
             setSupportActionBar(toolBar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(hasBackButton());
         }
+        invalidateOptionsMenu();
     }
+
 
     protected Context getContext() {
         return this;

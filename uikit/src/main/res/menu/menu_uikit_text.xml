@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:actionLayout="@layout/actionmenu_text"
-            android:id="@+id/uikit_menu_text"
-            android:title=""
-            />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/uikit_menu_text"
+        android:title=""
+        app:actionLayout="@layout/actionmenu_text"
+        app:showAsAction="always|withText" />
 </menu>

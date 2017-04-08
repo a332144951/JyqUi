@@ -11,11 +11,14 @@
     <style name="AppTheme.NavigationStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
 
     </style>
+    <style name="AppTheme.actionButtonStyle" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:background">@drawable/main_button_selector</item>
+        <item name="textAllCaps">false</item>
+    </style>
     <style name="AppTheme.ToolbarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="titleTextAppearance">@style/AppTheme.Toolbar_titleTextAppearance</item>
-        <item name="maxButtonHeight">@dimen/navigation_height</item>
+        <!--<item name="maxButtonHeight">@dimen/navigation_height</item>-->
         <item name="contentInsetStart">6dp</item>
-
     </style>
     <style name="AppTheme.buttonStyle" parent="TextAppearance.AppCompat.Button">
             <item name="android:textSize">@dimen/button_text_size</item>
@@ -25,10 +28,10 @@
     </style>
     <style name="mainButtonStyle" >
         <item name="android:background">@drawable/main_button_selector</item>
-        <item name="android:textColor">@drawable/white_text_selector</item>
+        <item name="android:textColor">@color/white_text_selector</item>
     </style>
     <style name="dangerButtonStyle">
-        <item name="android:textColor">@drawable/white_text_selector</item>
+        <item name="android:textColor">@color/white_text_selector</item>
         <item name="android:background">@drawable/danger_button_selector</item>
     </style>
     <style name="secondaryButtonStyle">
