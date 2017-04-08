@@ -23,6 +23,7 @@ package com.jyq.android.ui.media.image.ui;
            佛祖保佑       永无BUG
  */
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.MenuRes;
@@ -30,6 +31,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.view.menu.MenuPresenter;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,6 +41,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.jyq.android.ui.R;
 import com.jyq.android.ui.widget.LoadingLayout;
 import com.jyq.android.ui.widget.dialog.JDialogFragment;
@@ -116,6 +119,12 @@ import com.jyq.android.ui.widget.dialog.JDialogFragment;
         this.menuInflater=inflater;
         onCreateToolbarMenu(toolBar.getMenu(), inflater);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return onToolbarMenuItemClick(item)||super.onOptionsItemSelected(item);
+    }
+
     private MenuInflater menuInflater;
     public void invalidateOptionsMenu(){
         toolBar.getMenu().clear();

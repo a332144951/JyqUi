@@ -23,23 +23,18 @@ package com.jyq.android.ui.media.image;
            佛祖保佑       永无BUG
  */
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.jyq.android.common.storage.StorageType;
-import com.jyq.android.common.storage.StorageUtil;
-import com.jyq.android.common.string.StringUtil;
 import com.jyq.android.ui.media.image.bean.ImageItem;
 import com.jyq.android.ui.media.image.ui.ImagePickerFragment;
 import com.jyq.android.ui.media.image.utils.BitmapUtils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/5.
@@ -56,7 +51,9 @@ public class ImagePicker {
 
     private ImagePicker() {
     }
-
+    public static void showCamera(Context context, ImagePickerFragment.OnImagePickerListener listener){
+        new ImagePickerFragment(listener,true,0,false,null).show(context);
+    }
     public static void showImagePicker(Context context,ArrayList<ImageItem> mSelectedImages, ImagePickerFragment.OnImagePickerListener listener){
         showImagePicker(context,9,mSelectedImages,listener);
     }
@@ -64,7 +61,7 @@ public class ImagePicker {
         showImagePicker(context,limit,true,mSelectedImages,listener);
     }
     public static void showImagePicker(Context context,int limit, boolean multiMode, ArrayList<ImageItem> selectedImages, ImagePickerFragment.OnImagePickerListener listener){
-//        new ImagePickerFragment().show(context);
+        new ImagePickerFragment(listener,false,limit,multiMode,selectedImages).show(context);
 
     }
 

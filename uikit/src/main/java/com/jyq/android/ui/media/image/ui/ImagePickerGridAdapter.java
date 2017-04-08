@@ -32,6 +32,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.common.collect.Lists;
 import com.jyq.android.common.imageloader.ImageLoaderKit;
 import com.jyq.android.ui.R;
 import com.jyq.android.ui.media.image.ImagePicker;
@@ -54,7 +55,8 @@ class ImagePickerGridAdapter extends BaseAdapter {
     private OnImageItemClickListener listener;   //图片被点击的监听
     private int limit;
     private boolean isMultiMode;
-    public ImagePickerGridAdapter(Context context, ArrayList<ImageItem> imageItems,int limit,ArrayList<ImageItem> mSelectedImages,boolean multiMode) {
+
+    public ImagePickerGridAdapter(Context context, ArrayList<ImageItem> imageItems, int limit, ArrayList<ImageItem> mSelectedImages, boolean multiMode) {
         this.context = context;
         if (imageItems == null) {
             this.imageItems = new ArrayList<>();
@@ -62,9 +64,9 @@ class ImagePickerGridAdapter extends BaseAdapter {
             this.imageItems = imageItems;
         }
         mImageSize = ImagePickerUtils.getImageItemWidth(context);
-        this.mSelectedImages = mSelectedImages;
-        this.limit=limit;
-        isMultiMode=multiMode;
+        this.mSelectedImages = mSelectedImages!=null?mSelectedImages:new ArrayList<ImageItem>();
+        this.limit = limit;
+        isMultiMode = multiMode;
     }
 
     public void refreshData(ArrayList<ImageItem> images) {
@@ -100,56 +102,54 @@ class ImagePickerGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-            final ViewHolder holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.adapter_image_list_item, parent, false);
-                convertView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
-                holder = new ViewHolder(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
+        final ViewHolder holder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.adapter_image_list_item, parent, false);
+            convertView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        final ImageItem imageItem = getItem(position);
+
+        holder.ivThumb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null)
+                    listener.onImageItemClick(holder.rootView, imageItem, position);
             }
-            final ImageItem imageItem = getItem(position);
+        });
+        holder.cbCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            holder.ivThumb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null)
-                        listener.onImageItemClick(holder.rootView, imageItem, position);
-                }
-            });
-            holder.cbCheck.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (holder.cbCheck.isChecked() && mSelectedImages.size() >= limit) {
-                        Toast.makeText(context, context.getString(R.string.select_limit, limit), Toast.LENGTH_SHORT).show();
-                        holder.cbCheck.setChecked(false);
-                    } else {
-                        if (listener!=null){
-                            listener.onImageSelected(position, imageItem, holder.cbCheck.isChecked());
-                        }
-
-                    }
-                    holder.mask.setVisibility(holder.cbCheck.isChecked() ? View.VISIBLE : View.GONE);
-                }
-            });
-            //根据是否多选，显示或隐藏checkbox
-            if (isMultiMode) {
-                holder.cbCheck.setVisibility(View.VISIBLE);
-                boolean checked = mSelectedImages.contains(imageItem);
-                if (checked) {
-                    holder.mask.setVisibility(View.VISIBLE);
-                    holder.cbCheck.setChecked(true);
-                } else {
-                    holder.mask.setVisibility(View.GONE);
+                if (holder.cbCheck.isChecked() && mSelectedImages.size() >= limit) {
+                    Toast.makeText(context, context.getString(R.string.select_limit, limit), Toast.LENGTH_SHORT).show();
                     holder.cbCheck.setChecked(false);
-                }
-            } else {
-                holder.cbCheck.setVisibility(View.GONE);
-            }
+                } else {
+                    addImageSelected(position, imageItem, holder.cbCheck.isChecked());
 
-            ImageLoaderKit.getInstance().displayImage(context, imageItem.path, R.drawable.default_image, R.drawable.default_image, holder.ivThumb);
+                }
+                holder.mask.setVisibility(holder.cbCheck.isChecked() ? View.VISIBLE : View.GONE);
+            }
+        });
+        //根据是否多选，显示或隐藏checkbox
+        if (isMultiMode) {
+            holder.cbCheck.setVisibility(View.VISIBLE);
+            boolean checked = mSelectedImages.contains(imageItem);
+            if (checked) {
+                holder.mask.setVisibility(View.VISIBLE);
+                holder.cbCheck.setChecked(true);
+            } else {
+                holder.mask.setVisibility(View.GONE);
+                holder.cbCheck.setChecked(false);
+            }
+        } else {
+            holder.cbCheck.setVisibility(View.GONE);
+        }
+
+        ImageLoaderKit.getInstance().displayImage(context, imageItem.path, R.drawable.default_image, R.drawable.default_image, holder.ivThumb);
         return convertView;
     }
 
@@ -171,8 +171,24 @@ class ImagePickerGridAdapter extends BaseAdapter {
         this.listener = listener;
     }
 
+    private void addImageSelected(int position, ImageItem item, boolean isAdd) {
+        if (isAdd){
+            mSelectedImages.add(item);
+        }else{
+            mSelectedImages.remove(item);
+        }
+        if (listener!=null){
+            listener.onImageSelected(position, item, isAdd);
+        }
+    }
+
+    public ArrayList<ImageItem> getSelectedImages() {
+        return mSelectedImages;
+    }
+
     public interface OnImageItemClickListener {
         void onImageItemClick(View view, ImageItem imageItem, int position);
+
         void onImageSelected(int position, ImageItem item, boolean isAdd);
     }
 }

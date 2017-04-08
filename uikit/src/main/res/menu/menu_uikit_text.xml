@@ -6,4 +6,5 @@
         android:title=""
         app:actionLayout="@layout/actionmenu_text"
         app:showAsAction="always|withText" />
+
 </menu>

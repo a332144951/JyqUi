@@ -47,12 +47,13 @@ import java.util.List;
  * Created by Administrator on 2017/4/2.
  */
 
-public class ImagePickerFragment extends JToolbarDialog implements ImageDataSource.OnImagesLoadedListener,ImagePickerGridAdapter.OnImageItemClickListener {
-    public interface OnImagePickerListener{
+public class ImagePickerFragment extends JToolbarDialog implements ImageDataSource.OnImagesLoadedListener, ImagePickerGridAdapter.OnImageItemClickListener {
+    public interface OnImagePickerListener {
         void onImagePicker(ArrayList<ImageItem> imageItems);
     }
+
     private OnImagePickerListener listener;
-    private boolean showCamera=false;
+    private boolean showCamera = false;
     private int limit;
     private boolean multiMode;
     private ArrayList<ImageItem> mSelectedImages;
@@ -70,6 +71,7 @@ public class ImagePickerFragment extends JToolbarDialog implements ImageDataSour
     private ImagePickerGridAdapter pickerGridAdapter;
     private ImageDataSource imageDataSource;
     private String filePath;
+
     @Override
     int getLayoutId() {
         return R.layout.image_picker_layout;
@@ -82,24 +84,42 @@ public class ImagePickerFragment extends JToolbarDialog implements ImageDataSour
 
     @Override
     void onCreateToolbarMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_uikit_text,menu);
-        ((AppCompatButton)menu.findItem(R.id.uikit_menu_text).getActionView()).setText(getString(R.string.picker_image_btn,pickerGridAdapter.getSelectedCount(),limit));
+        inflater.inflate(R.menu.menu_uikit_text, menu);
+        if (showCamera) {
+            return;
+        }
+        AppCompatButton button= (AppCompatButton) menu.findItem(R.id.uikit_menu_text).getActionView();
+        button.setEnabled(pickerGridAdapter.getSelectedCount() != 0);
+        button.setText(getString(R.string.picker_image_btn, pickerGridAdapter.getSelectedCount(), limit));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onImagePicker(pickerGridAdapter.getSelectedImages());
+                    dismiss();
+                }
+            }
+        });
     }
 
     @Override
     boolean onToolbarMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.uikit_menu_text) {
+            listener.onImagePicker(pickerGridAdapter.getSelectedImages());
+            return true;
+        }
         return false;
     }
 
     @Override
     void initViews() {
-        if (showCamera){
+        if (showCamera) {
             takePicture();
             return;
         }
         gridView = (GridView) getView().findViewById(R.id.image_picker_grid);
-       imageDataSource= new ImageDataSource(this, null, this);
-        pickerGridAdapter = new ImagePickerGridAdapter(getContext(), null,limit,mSelectedImages,multiMode);
+        imageDataSource = new ImageDataSource(this, null, this);
+        pickerGridAdapter = new ImagePickerGridAdapter(getContext(), null, limit, mSelectedImages, multiMode);
         pickerGridAdapter.setOnImageItemClickListener(this);
     }
 
@@ -115,20 +135,20 @@ public class ImagePickerFragment extends JToolbarDialog implements ImageDataSour
 
     }
 
-     void takePicture() {
-         filePath= ImagePickerUtils.radomNewPicPath();
-        startActivityForResult(ImagePicker.getInstance().takePicture(getContext(),filePath),ImagePicker.REQUEST_CODE_TAKE);
+    void takePicture() {
+        filePath = ImagePickerUtils.radomNewPicPath();
+        startActivityForResult(ImagePicker.getInstance().takePicture(getContext(), filePath), ImagePicker.REQUEST_CODE_TAKE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode== Activity.RESULT_OK&&requestCode==ImagePicker.REQUEST_CODE_TAKE){
+        if (resultCode == Activity.RESULT_OK && requestCode == ImagePicker.REQUEST_CODE_TAKE) {
             ImagePicker.getInstance().galleryAddPic(getContext());
             ImagePicker.getInstance().resolveImageDegree();
 //            imageDataSource.resetLoader();
-            ImageItem item=new ImageItem();
-            item.path=filePath;
-            if (listener!=null){
+            ImageItem item = new ImageItem();
+            item.path = filePath;
+            if (listener != null) {
                 listener.onImagePicker(Lists.<ImageItem>newArrayList(item));
             }
             dismiss();
@@ -137,6 +157,6 @@ public class ImagePickerFragment extends JToolbarDialog implements ImageDataSour
 
     @Override
     public void onImageSelected(int position, ImageItem item, boolean isAdd) {
-            invalidateOptionsMenu();
+        invalidateOptionsMenu();
     }
 }
