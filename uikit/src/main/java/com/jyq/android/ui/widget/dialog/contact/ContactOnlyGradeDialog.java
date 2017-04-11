@@ -119,11 +119,11 @@ public class ContactOnlyGradeDialog extends ContactSelectDialog {
 
     @Override
     void onCancelClick() {
-        if (listener instanceof ContactSingleGradeListener) {
-            ((ContactSingleGradeListener) listener).onSelect(oldSelects.get(0));
-        } else {
-            ((ContactMultipleGradeListener) listener).onSelect(oldSelects);
-        }
+//        if (listener instanceof ContactSingleGradeListener) {
+//            ((ContactSingleGradeListener) listener).onSelect(oldSelects.get(0));
+//        } else {
+//            ((ContactMultipleGradeListener) listener).onSelect(oldSelects);
+//        }
         dismiss();
     }
 }

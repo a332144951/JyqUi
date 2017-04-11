@@ -162,11 +162,11 @@ class ContactGradeUserDialog extends ContactSelectDialog {
 
     @Override
     void onCancelClick() {
-        if (listener instanceof ContactSingleUserListener) {
-            ((ContactSingleUserListener) listener).onSelect(oldSelectedUser.size() == 0 ? null : oldSelectedUser.get(0));
-        } else if (listener instanceof ContactMultipleUserListener) {
-            ((ContactMultipleUserListener) listener).onSelect(oldSelectedUser);
-        }
+//        if (listener instanceof ContactSingleUserListener) {
+//            ((ContactSingleUserListener) listener).onSelect(oldSelectedUser.size() == 0 ? null : oldSelectedUser.get(0));
+//        } else if (listener instanceof ContactMultipleUserListener) {
+//            ((ContactMultipleUserListener) listener).onSelect(oldSelectedUser);
+//        }
         dismiss();
     }
 
