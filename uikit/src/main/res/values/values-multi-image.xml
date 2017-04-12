@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MultiImageView">
+        <attr name="itemSpace" format="dimension"/>
+        <attr name="maxItemCount" format="integer"/>
+        <attr name="editable" format="boolean"/>
+    </declare-styleable>
+</resources>

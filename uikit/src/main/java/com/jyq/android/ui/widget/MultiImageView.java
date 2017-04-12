@@ -24,19 +24,15 @@ package com.jyq.android.ui.widget;
  */
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.content.res.TypedArray;
+import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayout;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.jyq.android.common.imageloader.ImageLoaderKit;
 import com.jyq.android.ui.R;
 
 import java.util.ArrayList;
@@ -45,15 +41,22 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/4/8.
  */
 
-public class MultiImageView extends ViewGroup {
+public class MultiImageView extends GridLayout {
+    public interface MultiImageItemClickListener{
+        void OnItemClick(int position, ArrayList<String> images, Uri imageUri, boolean isPlus);
+    }
+    public interface MultiImageItemDeleteListener{
+        void OnItemDelete(int position);
+    }
     private int mMaxItem = 9;
     private int mItemSize;
     private int mItemSpace;
     private boolean mEditable;
     private ArrayList<String> mImages;
-
+    private MultiImageItemClickListener mItemClickListener;
+    private MultiImageItemDeleteListener mItemDeleteListener;
     public MultiImageView(Context context) {
-        this(context, null);
+        this(context,null);
     }
 
     public MultiImageView(Context context, @Nullable AttributeSet attrs) {
@@ -62,62 +65,64 @@ public class MultiImageView extends ViewGroup {
 
     public MultiImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        mItemSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, displayMetrics);
-        mItemSpace = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, displayMetrics);
-        mEditable = true;
+        TypedArray a=context.obtainStyledAttributes(attrs,R.styleable.MultiImageView);
+        mItemSpace=a.getDimensionPixelSize(R.styleable.MultiImageView_itemSpace,0);
+        mEditable=a.getBoolean(R.styleable.MultiImageView_editable,false);
+        mMaxItem=a.getInteger(R.styleable.MultiImageView_maxItemCount,9);
+        a.recycle();
+       setImages(new ArrayList<String>());
+        setOrientation(HORIZONTAL);
+    }
+
+    public void setItemClickListener(MultiImageItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
+
+    public void setItemDeleteListener(MultiImageItemDeleteListener mItemDeleteListener) {
+        this.mItemDeleteListener = mItemDeleteListener;
+    }
+
+    public void setMaxItem(int mMaxItem) {
+        this.mMaxItem = mMaxItem;
+    }
+
+    public String getImageUrl(int position) {
+        int offset = (mImages.size() < mMaxItem && mEditable) ? 1 : 0;
+        int realPos = position - offset;
+        return realPos < 0 ? null : mImages.get(realPos);
+    }
+
+    private int getItemCount() {
+        return mEditable ? Math.min(mImages.size() + 1, mMaxItem) : mImages.size();
     }
 
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        int childrenCount=getItemCount();
-        for (int i=0;i<childrenCount;i++){
-            EditAbleImageView view= (EditAbleImageView) getChildAt(i);
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        int count = getItemCount();
+        for (int i = 0; i < count; i++) {
+            View view = getChildAt(i);
             if (view==null){
-                view=generalItemView();
-                addView(view,generalItemLayoutParams());
+                continue;
             }
-            int col=getCol(i);
-            int row=getRow(i);
-            int left=col*(mItemSize+mItemSpace);
-            int top=row*(mItemSize+mItemSpace);
-            view.layout(left,top,left+mItemSize,top+mItemSize);
-            view.postInvalidate();
-            String url=getImageUrl(i);
-            if (TextUtils.isEmpty(url)){
-                view.getImageView().setImageResource(R.drawable.edit_image_plus_selector);
-            }else{
-                ImageLoaderKit.getInstance().displayImage(getContext(),url,R.drawable.default_image,R.drawable.default_image,view.getImageView());
-            }
+            int row = getRow(i);
+            int col = getCol(i);
+            int childLeft = col * (mItemSpace + mItemSize);
+            int childTop = row * (mItemSize + mItemSpace);
+            view.layout(childLeft, childTop, childLeft + mItemSize, childTop + mItemSize);
         }
-    }
-    public String getImageUrl(int position){
-        int offset=(mImages.size()<mMaxItem&&mEditable)?1:0;
-        int realPos=position-offset;
-        return realPos<0?null:mImages.get(realPos);
-    }
-    private int getItemCount(){
-        return mEditable?Math.min(mImages.size()+1,mMaxItem):mImages.size();
-    }
 
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width=measureWidth(widthMeasureSpec);
-        int height=measureHeight(heightMeasureSpec);
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int width = measureWidth(widthMeasureSpec);
+        int height = measureHeight(heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+        measureChildren(MeasureSpec.makeMeasureSpec(mItemSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mItemSize, MeasureSpec.EXACTLY));
+        setMeasuredDimension(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
     }
-//    private void layoutChild(){
-//        removeAllViews();
-//        if (mImages==null&&!mEditable){
-//            return;
-//        }
-//        int count=mEditable?Math.min(mImages.size()+1,mMaxItem):mImages.size();
-//        for (int i=0;i<count;i++){
-//            View view=generalItemView();
-//            addView(view);
-//        }
-//    }
+
     private int measureWidth(int measureSpec) {
         int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);
@@ -129,7 +134,7 @@ public class MultiImageView extends ViewGroup {
     }
 
     private int getMaxCol() {
-        return getItemCount() >= 3 ? 3 :getItemCount();
+        return getItemCount() >= 3 ? 3 : getItemCount();
     }
 
     private static final String TAG = "MultiImageView";
@@ -139,7 +144,8 @@ public class MultiImageView extends ViewGroup {
         int specMode = MeasureSpec.getMode(measureSpec);
         int width = MeasureSpec.getSize(measureSpec);
         int maxRow = getMaxRow();
-        result = maxRow * mItemSize +  (maxRow-1)*mItemSpace;
+        result = maxRow * mItemSize + (maxRow - 1) * mItemSpace;
+        Log.e(TAG, String.format("measureHeight: row:%d,height:%d",maxRow,result) );
         return result;
     }
 
@@ -154,28 +160,70 @@ public class MultiImageView extends ViewGroup {
      * @return
      */
     private int getMaxRow() {
-        return getRow(mImages.size() - 1)+1;
+        return getRow(getItemCount() - 1) + 1;
     }
 
     private static int getRow(int position) {
-        return position/3;
+        return position / 3;
     }
+
 
     public void setImages(ArrayList<String> mImages) {
         this.mImages = mImages;
+        reloadImages();
+    }
+    private void reloadImages(){
         removeAllViews();
+        setRowCount(getMaxRow());
+        setColumnCount(getMaxCol());
+        int count = getItemCount();
+        for (int i = 0; i < count; i++) {
+            EditAbleImageView view = generalItemView();
+            view.setListener(itemClick);
+            addView(view);
+            String url = getImageUrl(i);
+            if (TextUtils.isEmpty(url)) {
+                view.setImageResource(R.drawable.edit_image_plus_selector);
+            } else {
+                view.setTag(mImages.indexOf(url));
+                view.setImageResource(url);
+
+            }
+        }
         requestLayout();
         postInvalidate();
     }
 
-    private EditAbleImageView generalItemView(){
-        EditAbleImageView imageView=new EditAbleImageView(getContext());
+    private EditAbleImageView generalItemView() {
+        EditAbleImageView imageView = new EditAbleImageView(getContext());
         imageView.setEditable(mEditable);
-//        imageView.setLayoutParams(generalItemLayoutParams());
         return imageView;
     }
-    private LayoutParams generalItemLayoutParams(){
-        Log.e(TAG, "generalItemLayoutParams: "+mItemSize );
-        return new LayoutParams(mItemSize,mItemSize);
-    }
+    private EditAbleImageView.EditableImageViewListener itemClick=new EditAbleImageView.EditableImageViewListener() {
+        @Override
+        public void OnDeleteClick(EditAbleImageView view) {
+            int position= (int) view.getTag();
+            mImages.remove(position);
+            reloadImages();
+            if (mItemDeleteListener!=null){
+                mItemDeleteListener.OnItemDelete(position);
+            }
+        }
+
+        @Override
+        public void OnImageClick(EditAbleImageView view, boolean isPlus) {
+            if (!isPlus) {
+                int position = (int) view.getTag();
+                if (mItemClickListener != null) {
+                    mItemClickListener.OnItemClick(position, mImages, Uri.parse(mImages.get(position)), false);
+                }
+            }else{
+                if (mItemClickListener!=null){
+                    mItemClickListener.OnItemClick(0,null,null,true);
+                }
+            }
+        }
+
+    };
+
 }

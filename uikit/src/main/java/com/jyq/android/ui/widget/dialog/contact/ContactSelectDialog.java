@@ -62,7 +62,6 @@ public abstract class ContactSelectDialog extends JDialogFragment {
 
     protected interface ContactSelectListener<T> extends Serializable {
         void onSelect(T object);
-
     }
 
     public interface ContactSingleGradeListener extends ContactSelectListener<Grade> {
